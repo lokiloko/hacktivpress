@@ -24,6 +24,7 @@ class ArticleCtrl {
     })
   }
   static readByCategory (req, res, next) {
+    console.log(req.params.category);
     Article.readByCategory(req.params.category).then((articles) => {
       res.status(200).send(articles)
     }).catch((err) => {
