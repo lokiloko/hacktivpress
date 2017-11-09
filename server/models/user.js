@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const Schema = mongoose.Schema
 const encrypt = require('../helpers/cryptoHelper')
-
+require('dotenv').config()
 mongoose.connect('mongodb://localhost/hacktivpress-ian', {
   useMongoClient:true
 })
