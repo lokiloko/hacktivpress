@@ -6,13 +6,13 @@
     </md-button>
 
     <h2 class="md-title" style="flex: 1">HacktivPress</h2>
-
+    <md-button @click="openSearch">Search by Category</md-button>
     <md-button class="" v-if="!isLogin" id="custom" @click="openLogin">
       Login
     </md-button>
     <span v-else>
-      <md-button class="">
-        My Articles
+      <md-button class="" @click="openForm">
+        New Articles
       </md-button>
       <md-button class="" @click="doLogout">
         Logout
@@ -29,17 +29,27 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
   </md-sidenav>
   <LoginDialog ref="login"/>
+  <router-view/>
 </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import LoginDialog from '@/components/LoginDialog'
+import ArticleList from '@/components/ArticleList'
 
 export default {
   components: {
-    LoginDialog
+    LoginDialog,
+    ArticleList
   },
   methods: {
+    openSearch () {
+      console.log('aa')
+    },
+    openForm () {
+      console.log('aa')
+    },
     toggleLeftSidenav () {
       this.$refs.leftSidenav.toggle()
     },
@@ -54,12 +64,18 @@ export default {
         type: 'success',
         text: 'Logout Success'
       })
-    }
+    },
+    ...mapActions([
+      'getAllArticles'
+    ])
   },
   computed: {
     isLogin () {
       return this.$store.state.loggedIn
     }
+  },
+  created () {
+    this.getAllArticles()
   }
 }
 </script>
