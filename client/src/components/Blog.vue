@@ -29,6 +29,7 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
   </md-sidenav>
   <LoginDialog ref="login"/>
+  <FormArticle ref="insert"/>
   <router-view/>
 </div>
 </template>
@@ -37,18 +38,20 @@
 import { mapActions } from 'vuex'
 import LoginDialog from '@/components/LoginDialog'
 import ArticleList from '@/components/ArticleList'
+import FormArticle from '@/components/FormArticle'
 
 export default {
   components: {
     LoginDialog,
-    ArticleList
+    ArticleList,
+    FormArticle
   },
   methods: {
     openSearch () {
       console.log('aa')
     },
     openForm () {
-      console.log('aa')
+      this.$refs.insert.openDialog('formArticle')
     },
     redirectToHome () {
       this.$router.push('/')

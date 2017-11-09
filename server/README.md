@@ -36,4 +36,4 @@ npm start
 |/api/articles/category/:category|GET|Read all article data by category|<ul><li>[x] category</li></ul>|
 |/api/articles|POST|Create one article data|<ul><li>[x] title</li><li>[x] content</li><li>[x] category</li><li>[x] author *jwttoken</li></ul>|
 |/api/articles/:id|PUT|Update one article data|<ul><li>[x] id</li><li>[ ] title</li><li>[ ] content</li><li>[ ] category</li><li>[ ] author *jwttoken</li></ul>|
-|/api/articles/:id|DELETE|Delete one article data|<ul><li>[x] id</li></ul>|
+|/api/articles/:id/:author|DELETE|Delete one article data|<ul><li>[x] id</li><li>[x] author *token</li></ul>|
