@@ -21,8 +21,8 @@ npm start
 
 |Routes|Method|Description|Required Param|
 |-------|------|-------|-------|
-|/api/auth/login|POST|Auth to login|<li>[x]username</li><li>[x]password</li>|
-|/api/auth/register|POST|Register new user|<li>[x]username</li><li>[x]password</li>|
+|/api/auth/login|POST|Auth to login|<ul><li>[x]username</li><li>[x]password</li><ul>|
+|/api/auth/register|POST|Register new user|<ul><li>[x]username</li><li>[x]password</li></ul>|
 
 ### List of article Routes
 
