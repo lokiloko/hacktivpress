@@ -2,7 +2,7 @@
 <div>
   <md-dialog md-open-from="#custom" md-close-to="#custom" ref="formArticle">
     <md-dialog-title>
-      Login Form
+      Form Post
     </md-dialog-title>
 
     <md-dialog-content>
