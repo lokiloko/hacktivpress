@@ -117,6 +117,12 @@ export default {
           })
           console.error(err)
         })
+      }).catch(() => {
+        this.$swal(
+          'Canceled!',
+          'Your file has been saved from being REMOVED.',
+          'success'
+        )
       })
     },
     getArticleData () {
