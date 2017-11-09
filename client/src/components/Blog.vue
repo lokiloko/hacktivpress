@@ -5,7 +5,7 @@
       <md-icon>menu</md-icon>
     </md-button>
 
-    <h2 class="md-title" style="flex: 1">HacktivPress</h2>
+    <h2 class="md-title" style="flex: 1" @click="redirectToHome">HacktivPress</h2>
     <md-button @click="openSearch">Search by Category</md-button>
     <md-button class="" v-if="!isLogin" id="custom" @click="openLogin">
       Login
@@ -49,6 +49,9 @@ export default {
     },
     openForm () {
       console.log('aa')
+    },
+    redirectToHome () {
+      this.$router.push('/')
     },
     toggleLeftSidenav () {
       this.$refs.leftSidenav.toggle()

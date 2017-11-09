@@ -38,7 +38,19 @@ export default {
       console.log('dd')
     },
     remove () {
-      console.log('ee')
+      this.$http.delete('http://localhost:3000/api/articles/' + this.id + '/' + localStorage.getItem('token')).then((data) => {
+        this.$swal({
+          type: 'success',
+          text: 'Success to Delete this post'
+        })
+        this.$router.push('/')
+      }).catch((err) => {
+        this.$swal({
+          type: 'error',
+          text: 'Failed to Delete'
+        })
+        console.error(err)
+      })
     },
     getArticleData () {
       this.$http.get('http://localhost:3000/api/articles/' + this.id).then((data) => {

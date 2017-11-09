@@ -133,8 +133,8 @@ class Model {
   }
   static update (update) {
     return new Promise((resolve, reject) => {
-      this.readOne(update._id).then((data) => {
-        if(data.author === update.author) {
+      Model.readOne(update._id).then((data) => {
+        if(data.data.author._id.toString() === update.author) {
           Article.findOneAndUpdate({
             _id:update._id
           }, update, {
@@ -160,8 +160,11 @@ class Model {
   }
   static delete (id, author) {
     return new Promise((resolve, reject) => {
-      this.readOne(update._id).then((data) => {
-        if(data.author === author) {
+      Model.readOne(id).then((data) => {
+        console.log(data.data.author._id)
+        console.log(author)
+        if(data.data.author._id.toString() === author) {
+          console.log('sama')
           Article.findOneAndRemove({
             _id: id
           }).then((article) => {
@@ -170,12 +173,14 @@ class Model {
               data: article
             })
           }).catch((err) => {
+            console.log('sana')
             reject({
               message: 'Article delete failed',
               err: err
             })
           })
         } else {
+          console.log('gasama')
           reject({
             message: 'Unauthorized',
           })
