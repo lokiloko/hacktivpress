@@ -4,7 +4,7 @@
   <md-card>
     <md-card-header>
       <div class="md-title">{{article.title}}</div>
-      <div class="md-subhead">{{article.author.username}}</div>
+      <div class="md-subhead">{{article.author.username}} Category : {{article.category}}</div>
     </md-card-header>
 
     <md-card-actions>
