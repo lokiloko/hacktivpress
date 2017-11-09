@@ -94,6 +94,7 @@ export default {
       this.$http.get('http://localhost:3000/api/articles/category/' + this.search).then((data) => {
         console.log(data.data.data)
         this.$store.commit('setArticles', data.data.data)
+        this.$router.push('/')
         this.$swal({
           type: 'success',
           text: 'Search Success'
@@ -110,6 +111,7 @@ export default {
       this.$http.get('http://localhost:3000/api/articles/author/' + localStorage.getItem('token')).then((data) => {
         console.log(data.data.data)
         this.$store.commit('setArticles', data.data.data)
+        this.$router.push('/')
         this.$swal({
           type: 'success',
           text: 'Search Success'
