@@ -10,3 +10,5 @@ const mutations = {
     state.articles = payload
   }
 }
+
+export default mutations

@@ -13,7 +13,7 @@ import('sweetalert2/dist/sweetalert2.min.js')
 
 Vue.prototype.$swal = swal
 Vue.prototype.$http = axios.create({
-  baseUrl: 'http://localhost:3000/api'
+  // baseUrl: 'http://localhost:3000/api'
 })
 
 Vue.use(VueMaterial)
