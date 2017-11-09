@@ -21,15 +21,15 @@ npm start
 
 |Routes|Method|Description|Required Param|
 |-------|------|-------|-------|
-|/api/auth/login|POST|Auth to login|<ul><li>[x] username (string) </li><li>[x] password (string)</li></ul>|
-|/api/auth/register|POST|Register new user|<ul><li>[x]username</li><li>[x]password</li></ul>|
+|/api/auth/login|POST|Auth to login|<ul><li>[x] username </li><li>[x] password </li></ul>|
+|/api/auth/register|POST|Register new user|<ul><li>[x] username</li><li>[x] password</li></ul>|
 
 ### List of article Routes
 
 |Routes|Method|Description|Required Param|
 |-------|------|-------|-------|
 |/api/articles|GET|Read all articles data|-|
-|/api/articles/:id|GET|Read one article data|<li>[x]id</li>|
+|/api/articles/:id|GET|Read one article data|<li>[x] id</li>|
 |/api/articles/author/:author|GET|Read all article data by author|<li>[x]author</li>|
 |/api/articles/category/:category|GET|Read all article data by category|<li>[x]category</li>|
 |/api/articles|POST|Create one article data|<li>[x]title</li><li>[x]content</li><li>[x]category</li><li>[x]author</li>|
