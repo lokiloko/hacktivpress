@@ -9,7 +9,7 @@ class AuthCtrl {
     })
   }
   static register (req, res, next) {
-    User.login(req.body).then((user) => {
+    User.register(req.body).then((user) => {
       res.status(200).send(user)
     }).catch((err) => {
       res.status(500).send(err)
