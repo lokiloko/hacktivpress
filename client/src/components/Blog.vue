@@ -1,5 +1,22 @@
 <template lang="html">
 <div>
+  <md-dialog md-open-from="#custom" md-close-to="#custom" ref="search">
+    <md-dialog-title>
+      Search By Category
+    </md-dialog-title>
+
+    <md-dialog-content>
+      <md-input-container>
+        <label>Search</label>
+        <md-input type="text" v-model="search"></md-input>
+      </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button class="md-primary" @click="doSearch">Search</md-button>
+      <md-button class="md-primary" @click="closeSearch">Cancel</md-button>
+    </md-dialog-actions>
+  </md-dialog>
   <md-toolbar>
     <md-button class="md-icon-button" @click="toggleLeftSidenav">
       <md-icon>menu</md-icon>
@@ -13,6 +30,9 @@
     <span v-else>
       <md-button class="" @click="openForm">
         New Articles
+      </md-button>
+      <md-button class="" @click="doSearchAuthor">
+        My Articles
       </md-button>
       <md-button class="" @click="doLogout">
         Logout
@@ -46,9 +66,17 @@ export default {
     ArticleList,
     FormArticle
   },
+  data () {
+    return {
+      search: ''
+    }
+  },
   methods: {
     openSearch () {
-      console.log('aa')
+      this.$refs.search.open()
+    },
+    closeSearch () {
+      this.$refs.search.close()
     },
     openForm () {
       this.$refs.insert.openDialog('formArticle')
@@ -61,6 +89,38 @@ export default {
     },
     openLogin () {
       this.$refs.login.openDialog('dialog1')
+    },
+    doSearch () {
+      this.$http.get('http://localhost:3000/api/articles/category/' + this.search).then((data) => {
+        console.log(data.data.data)
+        this.$store.commit('setArticles', data.data.data)
+        this.$swal({
+          type: 'success',
+          text: 'Search Success'
+        })
+      }).catch((err) => {
+        console.error(err)
+        this.$swal({
+          type: 'error',
+          text: 'Search Failed'
+        })
+      })
+    },
+    doSearchAuthor () {
+      this.$http.get('http://localhost:3000/api/articles/author/' + localStorage.getItem('token')).then((data) => {
+        console.log(data.data.data)
+        this.$store.commit('setArticles', data.data.data)
+        this.$swal({
+          type: 'success',
+          text: 'Search Success'
+        })
+      }).catch((err) => {
+        console.error(err)
+        this.$swal({
+          type: 'error',
+          text: 'Search Failed'
+        })
+      })
     },
     doLogout () {
       localStorage.removeItem('token')

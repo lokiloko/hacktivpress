@@ -17,6 +17,9 @@ class ArticleCtrl {
     })
   }
   static readByAuthor (req, res, next) {
+    if (req.params.author) {
+      req.params.author = jwtverify(req.params.author)
+    }
     Article.readByAuthor(req.params.author).then((articles) => {
       res.status(200).send(articles)
     }).catch((err) => {
