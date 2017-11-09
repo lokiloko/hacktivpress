@@ -39,7 +39,7 @@ class Model {
   }
   static read () {
     return new Promise((resolve, reject) => {
-      Article.find({
+      Article.find({},{},{
         $sort:{
           created_at: -1
         }
@@ -79,7 +79,7 @@ class Model {
     return new Promise((resolve, reject) => {
       Article.find({
         author: author
-      }, {$sort:{created_at:-1}}).then((articles) => {
+      },{}, {$sort:{created_at:-1}}).then((articles) => {
         resolve({
           message: 'Data Found',
           data: articles
@@ -96,7 +96,7 @@ class Model {
     return new Promise((resolve, reject) => {
       Article.find({
         category: category
-      }, {$sort:{
+      },{}, {$sort:{
         created_at: -1
       }}).then((articles) => {
         resolve({
