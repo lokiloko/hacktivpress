@@ -93,8 +93,8 @@ export default {
           username: this.username,
           password: this.password
         }).then((data) => {
-          this.closeDialog('dialog1')
-          this.openDialog('dialog2')
+          this.closeDialog('dialog2')
+          this.openDialog('dialog1')
           this.$swal({
             type: 'success',
             text: 'Success Register, Login now'

@@ -83,6 +83,7 @@ export default {
     },
     redirectToHome () {
       this.$router.push('/')
+      this.getAllArticles()
     },
     toggleLeftSidenav () {
       this.$refs.leftSidenav.toggle()
