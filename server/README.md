@@ -35,5 +35,5 @@ npm start
 |/api/articles/author/:author|GET|Read all article data by author|<ul><li>[x] author</li></ul>|
 |/api/articles/category/:category|GET|Read all article data by category|<ul><li>[x] category</li></ul>|
 |/api/articles|POST|Create one article data|<ul><li>[x] title</li><li>[x] content</li><li>[x] category</li><li>[x] author</li></ul>|
-|/api/articles/id|PUT|Update one article data|<ul><li>[x] id</li><li>[ ] title</li><li>[ ] content</li><li>[ ] category</li><li>[ ] author</li></ul>|
+|/api/articles/:id|PUT|Update one article data|<ul><li>[x] id</li><li>[ ] title</li><li>[ ] content</li><li>[ ] category</li><li>[ ] author</li></ul>|
 |/api/articles/:id|DELETE|Delete one article data|<ul><li>[x] id</li></ul>|

@@ -17,14 +17,14 @@ class ArticleCtrl {
     })
   }
   static readByAuthor (req, res, next) {
-    Article.readByAuthor(req.body.author).then((articles) => {
+    Article.readByAuthor(req.params.author).then((articles) => {
       res.status(200).send(articles)
     }).catch((err) => {
       res.status(500).send(err)
     })
   }
   static readByCategory (req, res, next) {
-    Article.readByCategory(req.body.category).then((articles) => {
+    Article.readByCategory(req.params.category).then((articles) => {
       res.status(200).send(articles)
     }).catch((err) => {
       res.status(500).send(err)
