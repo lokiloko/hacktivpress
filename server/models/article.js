@@ -45,13 +45,13 @@ class Model {
         }
       }).then((articles) => {
         var obj = {
-          message: 'Data Found'
+          message: 'Data Found',
           data: articles
         }
         resolve(obj)
       }).catch((err) => {
         var obj = {
-          message: 'Error when get data'
+          message: 'Error when get data',
           err: err
         }
         reject(err)
