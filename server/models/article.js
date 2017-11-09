@@ -31,7 +31,7 @@ var articleSchema = new Schema({
   }
 })
 
-var Article = mongoose.Model('Article', articleSchema)
+var Article = mongoose.model('Article', articleSchema)
 
 class Model {
   static model () {
