@@ -10,6 +10,8 @@ This is a simple blogging apps created with express.js MongoDB and Vue.js
 # install dependencies
 npm install
 
+# create a .env file like example.env.js
+
 # serve with hot reload at localhost:3000
 npm start
 
