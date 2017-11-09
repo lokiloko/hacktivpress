@@ -41,7 +41,10 @@ class ArticleCtrl {
     })
   }
   static delete (req, res, next) {
-    Article.delete(req.params.id).then((article) => {
+    if (req.body.author) {
+      req.body.author = jwtverify(req.body.author)
+    }
+    Article.delete(req.params.id, req.body.author).then((article) => {
       res.status(200).send(article)
     }).catch((err) => {
       res.status(500).send(err)

@@ -43,7 +43,7 @@ class Model {
         $sort:{
           created_at: -1
         }
-      }).then((articles) => {
+      }).populate('author').then((articles) => {
         var obj = {
           message: 'Data Found',
           data: articles
@@ -62,7 +62,7 @@ class Model {
     return new Promise((resolve, reject) => {
       Article.findOne({
         _id: id
-      }).then((article) => {
+      }).populate('author').then((article) => {
         resolve({
           message: 'Data Found',
           data: article
@@ -79,7 +79,7 @@ class Model {
     return new Promise((resolve, reject) => {
       Article.find({
         author: author
-      },{}, {$sort:{created_at:-1}}).then((articles) => {
+      },{}, {$sort:{created_at:-1}}).populate('author').then((articles) => {
         resolve({
           message: 'Data Found',
           data: articles
@@ -98,7 +98,7 @@ class Model {
         category: category
       },{}, {$sort:{
         created_at: -1
-      }}).then((articles) => {
+      }}).populate('author').then((articles) => {
         resolve({
           message: 'Data Found',
           data: articles
@@ -133,37 +133,53 @@ class Model {
   }
   static update (update) {
     return new Promise((resolve, reject) => {
-      Article.findOneAndUpdate({
-        _id:update._id
-      }, update, {
-        new: true
-      }).then((article) => {
-        resolve({
-          message: 'Article updated',
-          data: article
-        })
-      }).catch((err) => {
-        reject({
-          message: 'Article update failed',
-          err: err
-        })
+      this.readOne(update._id).then((data) => {
+        if(data.author === update.author) {
+          Article.findOneAndUpdate({
+            _id:update._id
+          }, update, {
+            new: true
+          }).then((article) => {
+            resolve({
+              message: 'Article updated',
+              data: article
+            })
+          }).catch((err) => {
+            reject({
+              message: 'Article update failed',
+              err: err
+            })
+          })
+        } else {
+          reject({
+            message: 'Unauthorized',
+          })
+        }
       })
     })
   }
-  static delete (id) {
+  static delete (id, author) {
     return new Promise((resolve, reject) => {
-      Article.findOneAndRemove({
-        _id: id
-      }).then((article) => {
-        resolve({
-          message: 'Article deleted',
-          data: article
-        })
-      }).catch((err) => {
-        reject({
-          message: 'Article delete failed',
-          err: err
-        })
+      this.readOne(update._id).then((data) => {
+        if(data.author === author) {
+          Article.findOneAndRemove({
+            _id: id
+          }).then((article) => {
+            resolve({
+              message: 'Article deleted',
+              data: article
+            })
+          }).catch((err) => {
+            reject({
+              message: 'Article delete failed',
+              err: err
+            })
+          })
+        } else {
+          reject({
+            message: 'Unauthorized',
+          })
+        }
       })
     })
   }
