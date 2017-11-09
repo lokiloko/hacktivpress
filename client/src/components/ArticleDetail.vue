@@ -95,18 +95,28 @@ export default {
       }
     },
     remove () {
-      this.$http.delete('http://localhost:3000/api/articles/' + this.id + '/' + localStorage.getItem('token')).then((data) => {
-        this.$swal({
-          type: 'success',
-          text: 'Success to Delete this post'
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(() => {
+        this.$http.delete('http://localhost:3000/api/articles/' + this.id + '/' + localStorage.getItem('token')).then((data) => {
+          this.$swal({
+            type: 'success',
+            text: 'Success to Delete this post'
+          })
+          this.$router.push('/')
+        }).catch((err) => {
+          this.$swal({
+            type: 'error',
+            text: 'Failed to Delete'
+          })
+          console.error(err)
         })
-        this.$router.push('/')
-      }).catch((err) => {
-        this.$swal({
-          type: 'error',
-          text: 'Failed to Delete'
-        })
-        console.error(err)
       })
     },
     getArticleData () {
